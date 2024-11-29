@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Grades</title>
+    <style>
+        th, td{
+            padding: 10px 20px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <label for="phytotal">Total number of Physics: <input type="number" id="phytotal"></label><br>
+    <label for="phyobtained">Obtained number of Physics: <input type="number" id="phyobtained"></label><br>
+    <label for="chemtotal">Total number of Chemistry: <input type="number" id="chemtotal"></label><br>
+    <label for="chemobtained">Obtained number of Chemistry: <input type="number" id="chemobtained"></label><br>
+    <label for="mathtotal">Total number of Math: <input type="number" id="mathtotal"></label><br>
+    <label for="mathobtained">Obtained number of Math: <input type="number" id="mathobtained"></label><br>
+
+    <button onclick="checkout()">Check</button>
+
+    <div>
+        <table>
+            <tr>
+                <th>Subject</th>
+                <th>Total</th>
+                <th>Obtained</th>
+                <th>Percentage</th>
+                <th>Grade</th>
+            </tr>
+            <tr>
+                <th>Physics</th>
+                <td id="showtotalphysics"></td>
+                <td id="showobtainedphysics"></td>
+                <td id="showpercentagephysics"></td>
+                <td id="showgradephysics"></td>
+            </tr>
+            <tr>
+                <th>Chemistry</th>
+                <td id="showtotalchem"></td>
+                <td id="showobtainedchem"></td>
+                <td id="showpercentagechem"></td>
+                <td id="showgradechem"></td>
+            </tr>
+            <tr>
+                <th>Math</th>
+                <td id="showtotalmath"></td>
+                <td id="showobtainedmath"></td>
+                <td id="showpercentagemath"></td>
+                <td id="showgrademath"></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function checkout() {
+            let totalnumberofphysics = parseFloat(document.getElementById("phytotal").value);
+            let obtainednumberofphysics = parseFloat(document.getElementById("phyobtained").value);
+            let percentageofphysics = (obtainednumberofphysics / totalnumberofphysics) * 100;
+
+            let totalnumberofchemistry = parseFloat(document.getElementById("chemtotal").value);
+            let obtainednumberofchemistry = parseFloat(document.getElementById("chemobtained").value);
+            let percentageofchemistry = (obtainednumberofchemistry / totalnumberofchemistry) * 100;
+
+            let totalnumberofmath = parseFloat(document.getElementById("mathtotal").value);
+            let obtainednumberofmath = parseFloat(document.getElementById("mathobtained").value);
+            let percentageofmath = (obtainednumberofmath / totalnumberofmath) * 100;
+
+            document.getElementById("showtotalphysics").innerText = totalnumberofphysics;
+            document.getElementById("showobtainedphysics").innerText = obtainednumberofphysics;
+            document.getElementById("showpercentagephysics").innerText = percentageofphysics.toFixed(2) + "%";
+            document.getElementById("showgradephysics").innerText = getGrade(percentageofphysics);
+
+            document.getElementById("showtotalchem").innerText = totalnumberofchemistry;
+            document.getElementById("showobtainedchem").innerText = obtainednumberofchemistry;
+            document.getElementById("showpercentagechem").innerText = percentageofchemistry.toFixed(2) + "%";
+            document.getElementById("showgradechem").innerText = getGrade(percentageofchemistry);
+
+            document.getElementById("showtotalmath").innerText = totalnumberofmath;
+            document.getElementById("showobtainedmath").innerText = obtainednumberofmath;
+            document.getElementById("showpercentagemath").innerText = percentageofmath.toFixed(2) + "%";
+            document.getElementById("showgrademath").innerText = getGrade(percentageofmath);
+
+            let totalnumberofAllsubjects = totalnumberofphysics + totalnumberofchemistry + totalnumberofmath;
+            let obtainednumberofallsubjects = obtainednumberofphysics + obtainednumberofchemistry + obtainednumberofmath;
+            let percentageofallsubjects = (obtainednumberofallsubjects / totalnumberofAllsubjects) * 100;
+            console.log("Total Percentage of All Subjects: " + percentageofallsubjects.toFixed(2) + "%");
+        }
+
+        function getGrade(percentage) {
+            if (percentage >= 80) {
+                return "A+";
+            } else if (percentage >= 60) {
+                return "A";
+            } else if (percentage >= 50) {
+                return "B";
+            } else if (percentage >= 40) {
+                return "C";
+            } else {
+                return "F";
+            }
+        }
+    </script>
+</body>
+</html>
